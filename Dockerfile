@@ -5,10 +5,12 @@ ENV NB_USER jovyan
 ENV NB_UID 1000
 ENV HOME /home/${NB_USER}
 
+USER root
 RUN adduser --disabled-password \
     --gecos "Default user" \
     --uid ${NB_UID} \
     ${NB_USER}
+USER ${NB_USER}
 
 ## run any install.R script we find
 RUN if [ -f install.R ]; then R --quiet -f install.R; fi
