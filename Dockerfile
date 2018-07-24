@@ -11,14 +11,14 @@ USER root
 ## run any install.R script we find
 RUN if [ -f install.R ]; then R --quiet -f install.R; fi
 
+## Set default 'type' for png() calls - useful when X11 device is not available!
+## NOTE: Needs 'cairo' capability
+COPY ./irkernel.json /opt/conda/share/jupyter/kernels/ir/kernel.json
+
 # Make sure the contents of our repo are in ${HOME}
 COPY . ${HOME}
 RUN chown -R ${NB_UID} ${HOME}
 USER ${NB_USER}
-
-## Set default 'type' for png() calls - useful when X11 device is not available!
-## NOTE: Needs 'cairo' capability
-RUN echo "options(bitmapType='cairo')" > ${HOME}/.Rprofile
 
 # Specify the default command to run
 CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
