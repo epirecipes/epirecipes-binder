@@ -18,7 +18,7 @@ USER ${NB_USER}
 
 ## Set default 'type' for png() calls - useful when X11 device is not available!
 ## NOTE: Needs 'cairo' capability
-RUN cat "options(bitmapType='cairo')" > ${HOME}/.Rprofile
+RUN echo "options(bitmapType='cairo')" > ${HOME}/.Rprofile
 
 # Specify the default command to run
 CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
