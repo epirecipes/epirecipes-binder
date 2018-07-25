@@ -1,0 +1,21 @@
+name: epicookbook
+channels:
+  - QuantStack
+  - conda-forge
+dependencies:
+  - xeus-cling=0.4.5
+  - xtensor=0.16.4
+  - xtensor-blas=0.11.1
+  - notebook
+  - matplotlib
+  - numpy
+  - scipy
+  - pandas
+  - plotly
+  - rpy2
+  - cython
+  - fortran-magic
+  - pip
+  - pip:
+      - julia
+      - cffi_magic
