@@ -8,6 +8,9 @@ ENV HOME /home/${NB_USER}
 ## Change user to root to install
 USER root
 
+## Add Conda stuff
+RUN if [ -f environment.yml ]; then conda env update -f environment.yml; fi
+
 ## run any install.R script we find
 RUN if [ -f install.R ]; then R --quiet -f install.R; fi
 
