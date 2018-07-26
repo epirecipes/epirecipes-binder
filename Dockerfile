@@ -9,10 +9,10 @@ ENV HOME /home/${NB_USER}
 USER root
 
 ## Add Conda stuff
-RUN if [ -f environment.yml ]; then conda install -f environment.yml; fi
+RUN conda install -f environment.yml
 
 ## run any install.R script we find
-RUN if [ -f install.R ]; then R --quiet -f install.R; fi
+RUN R --quiet -f install.R
 
 ## Set default 'type' for png() calls - useful when X11 device is not available!
 ## NOTE: Needs 'cairo' capability
