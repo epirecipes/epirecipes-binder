@@ -9,7 +9,14 @@ ENV HOME /home/${NB_USER}
 USER root
 
 ## Add Conda stuff
-RUN conda install -f environment.yml
+RUN conda install --quiet --yes \
+    xeus-cling=0.4.5 \
+    xtensor=0.16.4 \
+    xtensor-blas=0.11.1 \
+    -c QuantStack && \
+    conda clean -tipsy && \
+    fix-permissions $CONDA_DIR && \
+    fix-permissions /home/$NB_USER
 
 ## run any install.R script we find
 RUN R --quiet -f install.R
