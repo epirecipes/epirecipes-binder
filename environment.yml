@@ -16,6 +16,7 @@ dependencies:
   - cython
   - fortran-magic
   - pip
+  - r-cairo
   - pip:
       - julia
       - cffi_magic
