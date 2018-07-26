@@ -19,19 +19,7 @@ RUN conda install --quiet --yes \
     fix-permissions /home/$NB_USER
 
 ## run any install.R script we find
-RUN R ---slave -e  "install.packages(c(
-'devtools',
-'Cairo',
-'reshape2',
-'deSolve',
-'simecol',
-'Rcpp',
-'ggplot2',
-'plotly',
-'pomp',
-'GillespieSSA'
-), repos='https://mran.microsoft.com/snapshot/2018-07-01', method='libcurl');
-devtools::install_github("mrc-ide/odin", ref="dd8c34a", upgrade = FALSE)"
+RUN R ---slave -e  "install.packages(c('devtools','Cairo','reshape2','deSolve','simecol','Rcpp','ggplot2','plotly','pomp','GillespieSSA'), repos='https://mran.microsoft.com/snapshot/2018-07-01', method='libcurl');devtools::install_github("mrc-ide/odin", ref="dd8c34a", upgrade = FALSE)"
 
 ## NOTE: Needs 'cairo' capability
 COPY ./irkernel.json /opt/conda/share/jupyter/kernels/ir/kernel.json
