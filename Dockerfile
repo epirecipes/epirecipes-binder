@@ -19,7 +19,7 @@ RUN conda install --quiet --yes \
     fix-permissions /home/$NB_USER
 
 ## run any install.R script we find
-RUN R --quiet -f install.R
+RUN R --quiet -f ./install.R
 
 ## Set default 'type' for png() calls - useful when X11 device is not available!
 ## NOTE: Needs 'cairo' capability
