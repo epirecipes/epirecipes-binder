@@ -11,8 +11,6 @@ USER root
 ## Add Conda stuff
 RUN if [ -f environment.yml ]; then conda env update -f environment.yml; fi
 
-RUN conda install --force r-cairo=1.5.9=mro343h889e2dd_0 -c conda-forge
-
 ## run any install.R script we find
 RUN if [ -f install.R ]; then R --quiet -f install.R; fi
 
