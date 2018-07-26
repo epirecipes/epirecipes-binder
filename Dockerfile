@@ -17,13 +17,14 @@ RUN conda install --quiet --yes \
     xeus-cling=0.4.5 \
     xtensor=0.16.4 \
     xtensor-blas=0.11.1 \
+    r-cairo \
     -c QuantStack && \
     conda clean -tipsy && \
     fix-permissions $CONDA_DIR && \
     fix-permissions /home/$NB_USER
 
 ## run any install.R script we find
-RUN R ---slave -e  "install.packages(c('devtools','Cairo','reshape2','deSolve','simecol','Rcpp','ggplot2','plotly','pomp','GillespieSSA'), repos='https://mran.microsoft.com/snapshot/2018-07-01', method='libcurl');devtools::install_github("mrc-ide/odin", ref="dd8c34a", upgrade = FALSE)"
+RUN R ---slave -e  "install.packages(c('Cairo'), repos='https://mran.microsoft.com/snapshot/2018-07-01', method='libcurl')"
 
 ## NOTE: Needs 'cairo' capability
 COPY ./irkernel.json /opt/conda/share/jupyter/kernels/ir/kernel.json
