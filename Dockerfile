@@ -8,6 +8,10 @@ ENV HOME /home/${NB_USER}
 ## Change user to root to install
 USER root
 
+##
+RUN apt-get install gzip
+RUN ln -s /bin/tar /bin/gtar
+
 ## Add Conda stuff
 RUN conda install --quiet --yes \
     xeus-cling=0.4.5 \
